@@ -1,0 +1,42 @@
+<apex:page showHeader="false" applyHtmlTag="false" docType="html-5.0" controller="SoslController" standardStylesheets="false">
+    <apex:includeScript value="{! $Resource.jQuery }"/>
+    <apex:stylesheet id="bootstrap" value="{! $Resource.bootstrap }"/>
+    <div class="container"> 
+        <div class="page-header">
+            <h1>Sosl Search <small>for Accounts, Contacts, Opportunities</small></h1>
+        </div>
+        <apex:form >
+            <br/>
+            <apex:inputText value="{!searchStr}" onkeyup="SearchIt();" id="search" styleClass="form-control" html-placeholder="Enter keyword"/>
+            <br/>
+            <apex:actionFunction name="SearchIt" action="{!grabRecords}"
+                                 rerender="acct,cont,oppt"/>
+        </apex:form>
+        
+        <apex:outputPanel title="" id="error">
+            <apex:pageMessages ></apex:pageMessages>
+        </apex:outputPanel>
+        
+        <apex:pageBlock mode="maindetail"  id="acct">
+            <apex:pageblockTable value="{!accList }" var="acc" styleClass="table" >
+                <apex:column value="{!acc.name}"/>
+                <apex:column value="{!acc.Type}"/>
+            </apex:pageblockTable>
+        </apex:pageBlock>
+        
+        <apex:pageBlock mode="maindetail"  id="cont">
+            <apex:pageblockTable value="{!conList}" var="con" styleClass="table" >
+                <apex:column value="{!con.name}"/>
+                <apex:column value="{!con.email}"/>
+            </apex:pageblockTable>
+        </apex:pageBlock>
+        
+        <apex:pageBlock mode="maindetail" id="oppt">
+            <apex:pageblockTable value="{!optyList}" var="opty" styleClass="table" >
+                <apex:column value="{!opty.name}"/>
+                <apex:column value="{!opty.StageName}"/>
+            </apex:pageblockTable>
+        </apex:pageBlock>
+    </div>
+    
+</apex:page>
