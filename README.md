@@ -1,2 +1,2 @@
 # SoslSearch
-![Alt text](/soslresult.jpg?raw=true "Screenshot")
+![Alt text](/soslresult.png?raw=true "Screenshot")
